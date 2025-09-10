@@ -10,7 +10,7 @@ public class CharCntrl : MonoBehaviour {
 
     private Rigidbody2D rb;
 
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     private bool isGrounded;
     public Transform groundCheck;
