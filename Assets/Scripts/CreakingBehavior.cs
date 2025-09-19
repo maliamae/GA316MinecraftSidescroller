@@ -10,6 +10,7 @@ public class CreakingBehavior : MonoBehaviour
 
     public GameObject creakingChar;
     public GameObject steveChar;
+    public Transform creakingTracker;
 
     public float speed;
     //private bool seesPlayer = false;
@@ -45,7 +46,7 @@ public class CreakingBehavior : MonoBehaviour
 
         if (steveChar.GetComponent<CharCntrl>().facingRight == true) //ONLY WORKS IF STEVE IS ALWAYS ON THE RIGHT SIDE OF CREAKING
         {
-            dirToSteve = steveChar.transform.position - creakingChar.transform.position;
+            dirToSteve = creakingTracker.position - creakingChar.transform.position;
 
             creakingChar.transform.position += (dirToSteve * speed) * Time.deltaTime;
         }
