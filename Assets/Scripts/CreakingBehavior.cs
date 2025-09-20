@@ -42,15 +42,25 @@ public class CreakingBehavior : MonoBehaviour
         {
             creakingChar.transform.position += (dirToSteve * speed) * Time.deltaTime;
         }
-        */
-
+        
+        //following for CharCntrl script
         if (steveChar.GetComponent<CharCntrl>().facingRight == true) //ONLY WORKS IF STEVE IS ALWAYS ON THE RIGHT SIDE OF CREAKING
         {
             dirToSteve = creakingTracker.position - creakingChar.transform.position;
 
             creakingChar.transform.position += (dirToSteve * speed) * Time.deltaTime;
         }
-        
+        */
+
+        //following for Controller script (animations)
+        if (steveChar.GetComponent<Controller>().facingRight == true) //ONLY WORKS IF STEVE IS ALWAYS ON THE RIGHT SIDE OF CREAKING
+        {
+            dirToSteve = creakingTracker.position - creakingChar.transform.position;
+
+            creakingChar.transform.position += (dirToSteve * speed) * Time.deltaTime;
+        }
+
+
     }
 
     /*

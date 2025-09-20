@@ -13,7 +13,7 @@ public class Controller : MonoBehaviour {
     public float groundRadius = 0.2f;
     public float jumpForce = 3500f;         
     public LayerMask whatIsGround;
-	bool facingRemote = true;
+	public bool facingRight = true;
     bool grounded = false;
    
 
@@ -36,7 +36,7 @@ public class Controller : MonoBehaviour {
             if (Hmove < -0.1f)
             {
                 // moving Closer
-                if (facingRemote)
+                if (facingRight)
                     Flip();
                 //rigi.MovePosition(new Vector2(transform.position.x - speed, transform.position.y));
 
@@ -44,7 +44,7 @@ public class Controller : MonoBehaviour {
             else if (Hmove > 0.1f)
             {
                 // moving Remote
-                if (!facingRemote)
+                if (!facingRight)
                     Flip();
                 // rigi.MovePosition(new Vector2(transform.position.x + speed, transform.position.y));
             }
@@ -77,7 +77,7 @@ public class Controller : MonoBehaviour {
 	{
             Vector3 temp = transform.localScale;
             transform.localScale = new Vector3(-temp.x, temp.y, temp.z);
-            facingRemote = !facingRemote;
+            facingRight = !facingRight;
 	}
 
 }
