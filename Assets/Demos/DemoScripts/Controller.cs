@@ -15,6 +15,8 @@ public class Controller : MonoBehaviour {
     public LayerMask whatIsGround;
 	public bool facingRight = true;
     bool grounded = false;
+
+    public AudioSource audioSrc;
    
 
 
@@ -40,6 +42,8 @@ public class Controller : MonoBehaviour {
                     Flip();
                 //rigi.MovePosition(new Vector2(transform.position.x - speed, transform.position.y));
 
+                audioSrc.UnPause();
+
             }
             else if (Hmove > 0.1f)
             {
@@ -47,6 +51,12 @@ public class Controller : MonoBehaviour {
                 if (!facingRight)
                     Flip();
                 // rigi.MovePosition(new Vector2(transform.position.x + speed, transform.position.y));
+
+                audioSrc.UnPause();
+            }
+            else
+            {
+                audioSrc.Pause();
             }
 
             rigi.velocity = new Vector2(Hmove * speed, rigi.velocity.y);
