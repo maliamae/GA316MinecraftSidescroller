@@ -15,11 +15,14 @@ public class CreakingBehavior : MonoBehaviour
     public float speed;
     //private bool seesPlayer = false;
     private Vector3 dirToSteve;
+    public int playSpeed = 1;
+    public Animator anim;
+    bool atBorder = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //anim.speed = playSpeed;
     }
 
     // Update is called once per frame
@@ -53,14 +56,38 @@ public class CreakingBehavior : MonoBehaviour
         */
 
         //following for Controller script (animations)
-        if (steveChar.GetComponent<Controller>().facingRight == true) //ONLY WORKS IF STEVE IS ALWAYS ON THE RIGHT SIDE OF CREAKING
+        if (steveChar.GetComponent<Controller>().facingRight == true && atBorder == false) //ONLY WORKS IF STEVE IS ALWAYS ON THE RIGHT SIDE OF CREAKING
         {
             dirToSteve = creakingTracker.position - creakingChar.transform.position;
 
             creakingChar.transform.position += (dirToSteve * speed) * Time.deltaTime;
+            playSpeed = 1;
+            anim.speed = playSpeed;
+        }
+        else if (steveChar.GetComponent<Controller>().facingRight == false)
+        {
+            playSpeed = 0;
+            anim.speed = playSpeed;
         }
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Creaking at border");
+        if (collision.gameObject.tag == "CreakingBorder")
+        {
+            Debug.Log("creaking at border");
+            //anim.speed = 0;
+            atBorder = true;
+            anim.SetBool("atBorder", atBorder);
+        }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            Debug.Log("steve dies");
+        }
     }
 
     /*
