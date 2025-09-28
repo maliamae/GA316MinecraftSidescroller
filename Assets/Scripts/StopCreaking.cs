@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StopCreaking : MonoBehaviour
 {
+    //public GameObject border;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class StopCreaking : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             this.GetComponent<Collider2D>().isTrigger = false;
         }

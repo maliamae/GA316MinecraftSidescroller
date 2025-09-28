@@ -15,6 +15,7 @@ public class EndScene : MonoBehaviour
         {
             StartCoroutine(fadeScript.AnimateTransitionIn());
             StartCoroutine(SwitchCamDelay());
+            CloudMovement.gameOn = false;
         }
     }
 

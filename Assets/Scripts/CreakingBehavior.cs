@@ -18,7 +18,7 @@ public class CreakingBehavior : MonoBehaviour
     private Vector3 dirToSteve;
     public int playSpeed = 1;
     public Animator anim;
-    bool atBorder = false;
+    public bool atBorder = false;
     public CanvasGroup blackScreen;
     bool hasTouchedSteve = false;
     public ScreenTransition fadeScript;
@@ -85,7 +85,7 @@ public class CreakingBehavior : MonoBehaviour
         //Debug.Log("Creaking at border");
         if (collision.gameObject.tag == "CreakingBorder")
         {
-            Debug.Log("creaking at border");
+            //Debug.Log("creaking at border");
             //anim.speed = 0;
             atBorder = true;
             anim.SetBool("atBorder", atBorder);
@@ -93,10 +93,21 @@ public class CreakingBehavior : MonoBehaviour
 
         if(collision.gameObject.tag == "Player" && hasTouchedSteve == false)
         {
-            Debug.Log("steve dies");
+            //Debug.Log("steve dies");
             //blackScreen.gameObject.SetActive(true);
             StartCoroutine(fadeScript.AnimateTransitionIn());
             hasTouchedSteve=true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "CreakingBorder")
+        {
+            //Debug.Log("creaking at border");
+            //anim.speed = 0;
+            atBorder = true;
+            anim.SetBool("atBorder", atBorder);
         }
     }
 

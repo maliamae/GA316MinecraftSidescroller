@@ -27,7 +27,7 @@ public class CameraSwitch : MonoBehaviour
         startCam.enabled = false;
         endCam.enabled = true;
         CloudMovement.gameOn = true;
-
+        //Debug.Log("Play Button Pressed");
         //Instantiate(stevePrefab, spawnPoint);
         //endCam.GetComponent<CinemachineVirtualCamera>().Follow = stevePrefab.transform;
     }
