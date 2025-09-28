@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CreakingBehavior : MonoBehaviour
 {
@@ -18,11 +19,17 @@ public class CreakingBehavior : MonoBehaviour
     public int playSpeed = 1;
     public Animator anim;
     bool atBorder = false;
+    public CanvasGroup blackScreen;
+    bool hasTouchedSteve = false;
+    public ScreenTransition fadeScript;
+    //public Transform steveSpawnPoint;
+    //public Transform creakingSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         //anim.speed = playSpeed;
+        
     }
 
     // Update is called once per frame
@@ -84,13 +91,33 @@ public class CreakingBehavior : MonoBehaviour
             anim.SetBool("atBorder", atBorder);
         }
 
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && hasTouchedSteve == false)
         {
             Debug.Log("steve dies");
+            //blackScreen.gameObject.SetActive(true);
+            StartCoroutine(fadeScript.AnimateTransitionIn());
+            hasTouchedSteve=true;
         }
     }
 
     /*
+    public IEnumerator AnimateTransitionIn()
+    {
+        var tweener = blackScreen.DOFade(1f, 2f);
+        yield return tweener.WaitForCompletion();
+        steveChar.transform.position = steveSpawnPoint.position;
+        creakingChar.transform.position = creakingSpawnPoint.position;
+        creakingChar.SetActive(false);
+        StartCoroutine(AnimateTransitionOut());
+    }
+
+    public IEnumerator AnimateTransitionOut()
+    {
+        var tweener = blackScreen.DOFade(0f, 2f);
+        yield return tweener.WaitForCompletion();
+    }
+
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

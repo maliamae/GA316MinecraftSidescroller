@@ -7,6 +7,8 @@ public class CameraSwitch : MonoBehaviour
 {
     public CinemachineVirtualCamera startCam;
     public CinemachineVirtualCamera endCam;
+    //public Transform spawnPoint;
+    //public GameObject stevePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +27,8 @@ public class CameraSwitch : MonoBehaviour
         startCam.enabled = false;
         endCam.enabled = true;
         CloudMovement.gameOn = true;
+
+        //Instantiate(stevePrefab, spawnPoint);
+        //endCam.GetComponent<CinemachineVirtualCamera>().Follow = stevePrefab.transform;
     }
 }
