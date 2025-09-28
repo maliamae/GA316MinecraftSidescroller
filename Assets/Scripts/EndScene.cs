@@ -20,7 +20,7 @@ public class EndScene : MonoBehaviour
 
     IEnumerator SwitchCamDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         endCam.enabled = false;
         startCam.enabled = true;
     }
